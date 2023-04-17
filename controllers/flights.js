@@ -38,7 +38,7 @@ function show(req, res) {
   console.log("init ctrl show")
   console.log(req.params)
   Flight.findById(req.params.flightNo)
-  .then(flight=> {
+  .then(flights=> {
     res.render('flights/show', {
       title: "Flight",
       flights: flights,
