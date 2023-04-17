@@ -6,13 +6,15 @@ router.get('/', flightsCtrl.index)
 // router.get('/new', flightsCtrl.new)
 router.get('/add', flightsCtrl.add)
 // router.post('/', flightsCtrl.create)
-router.get('/:flightNo', flightsCtrl.show)
+router.get('/:flightId', flightsCtrl.show)
 
-router.get('/:flightNo/edit', flightsCtrl.edit)
+router.get('/:flightId/edit', flightsCtrl.edit)
 
 
 router.post('/', flightsCtrl.create)
 
-router.delete('/:flightNo', flightsCtrl.delete)
+router.put("/:flightId", flightsCtrl.update)
+
+router.delete('/:flightId', flightsCtrl.delete)
 
 export { router }

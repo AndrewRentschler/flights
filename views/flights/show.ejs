@@ -5,11 +5,15 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h2>Flight: <%= flight.flightNo %></h2>
-  <p><%= flight.airline %></p>
-  <p><%= flight.airport %></p>
-  <p><%= flight.departs%></p>
-  <a href="/">Go Back</a>
+  <h1><%= title %></h1>
+  <section>
+    <h2>Flight: <%= flight.flightNo %></h2>
+    <p><%= flight.airline %></p>
+    <p><%= flight.airport %></p>
+    <p><%= flight.departs%></p>
+    <a href="/<%= flight._id %>/edit"><button>Edit Flight</button></a>
+    <a href="/">Go Back</a>
+  </section>
 </main>
 
 <%- include('../partials/footer') %>
