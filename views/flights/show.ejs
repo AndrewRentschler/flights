@@ -4,16 +4,82 @@
 
 <%- include('../partials/nav') %>
 
-<main>
+<<main>
   <h1><%= title %></h1>
   <section>
-    <h2>Flight: <%= flight.flightNo %></h2>
-    <p><%= flight.airline %></p>
-    <p><%= flight.airport %></p>
-    <p><%= flight.departs%></p>
-    <a href="/<%= flight._id %>/edit"><button>Edit Flight</button></a>
-    <a href="/">Go Back</a>
+    <div>
+      <a href="/flights/<%= flight._id %>/edit">
+        <button>Edit Flight</button>
+      </a>
+    </div>
+    <div>Airline</div>
+    <div><%= flight.airline %></div>
+    <div>Airport</div>
+    <div><%= flight.airport %></div>
+    <div>Flight Number</div>
+    <div><%= flight.flightNo %></div>
+    <div>Departure</div>
+    <div><%= flight.departs.toISOString().slice(0, 10) %></div>
+    <div>Meals:</div>
+    <ul>
+      <% flight.meals.forEach(meal => { %>
+        <li><%= meal.name %></li>
+      <% }) %>
+    </ul>
   </section>
+  <form 
+    id="add-meal"
+    action="/flights/<%= flight._id %>/meals"
+    method="POST"
+  >
+    <select name="mealId">
+      <% meals.forEach(meal => { %>
+        <option value="<%= meal._id %>"><%= meal.name %></option>
+        <% }) %>
+    </select>
+    <button type="submit">Add to Meals</button>
+</form>
+<h2>Tickets</h2>
+  <% if (flight.tickets.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Seat</th>
+          <th>Price</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% flight.tickets.forEach(function(ticket) { %>
+          <tr>
+            <td><%= ticket.seat %></td>
+            <td><%= ticket.price %></td>
+            <td>
+              <form 
+                action="/flights/<%= flight._id %>/tickets/<%= ticket._id %>?_method=DELETE"
+                method="POST"
+              >
+                <button type="submit">X</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <h3>No Tickets</h3>
+  <% } %>
+  <form 
+  id="add-ticket-form"
+  action="/flights/<%= flight._id %>/tickets"
+  method="POST"
+  >
+  <label for="seat">Seat:</label>
+  <input type="text" name="seat" id="seat-input" required pattern="[A-F][1-9]\d?">
+  <label for="price">Price:</label>
+  <input type="text" name="price" id="price-input" min="0">
+  <button type="submit">Add Ticket</button>
+  </form>
 </main>
 
 <%- include('../partials/footer') %>

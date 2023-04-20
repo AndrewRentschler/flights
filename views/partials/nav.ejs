@@ -1,17 +1,20 @@
 </head>
 <body>
   <nav>
-    <i class="fas fa-film fa-2x"></i>
+    <i class="fas fa-plane" style="color: #ef156c;"></i>
     <a 
-    href="/add" 
-    class=<%= title === 'Add Movie' ? 'active' : '' %>
+      href="/meals/new" class="<%= title === 'Add Meal' ? 'active' : '' %>"
+      >
+        ADD MEAL
+    </a>
+    <a 
+      href="/flights/new" class="<%= title === 'Add Flight' ? 'active' : '' %>"
+      >
+        ADD FLIGHT
+    </a>
+    <a 
+    href="/flights" class="<%= title === 'All Flights' ? 'active' : '' %>"
     >
-    ADD FLIGHT
-  </a>
-  <a 
-    href="/" 
-    class=<%= title === 'All Movies'  ? 'active' : '' %>
-    >
-    ALL FLIGHTS
+      ALL FLIGHTS
   </a>
   </nav>
